@@ -2,8 +2,15 @@
 let wh = window.innerHeight || document.documentElement.clientHeight;
 
 let bg = $('.bg');
+let pages = $('.content');
 let lastPositonIndex = 1;
+
+
 window.onscroll = function() {
+    detect();  
+}
+
+function detect() {
     let distance = window.pageYOffset
     let currentIndex = Math.floor(distance / wh) + 1;
     console.log('currentIndex----------------' + ' ' + currentIndex)
@@ -13,18 +20,13 @@ window.onscroll = function() {
         lastPositonIndex = currentIndex;
         bg.eq(1).add('active')
         bg.eq(currentIndex - 1).addClass('active').siblings().removeClass('active');
-    }
-    
+        pages.eq(currentIndex - 1).addClass('show').siblings().removeClass('show');
 
-    // console.log(distance)
-    
-    // for(let i = 0; i < bgs.length; i++) {
-    //     if(isScrolledIntoView(bgs[i])) {
-    //         console.log(i)
-    //     }
-        
-    // }
-  
+    }
+}
+
+document.onload = function() {
+    detect();
 }
 
 // function isScrolledIntoView(el) {
